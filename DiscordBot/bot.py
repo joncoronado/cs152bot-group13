@@ -16,6 +16,8 @@ handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w'
 handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
 logger.addHandler(handler)
 
+MOD_CHANNEL_ID = 1356427907035041953
+
 # There should be a file called 'tokens.json' inside the same folder as this file
 token_path = 'tokens.json'
 if not os.path.isfile(token_path):
@@ -95,8 +97,12 @@ class ModBot(discord.Client):
             await message.channel.send(r)
 
         # If the report is complete or cancelled, remove it from our map
+        # AND send to moderator channel
         if self.reports[author_id].report_complete():
-            self.reports.pop(author_id)
+            r = self.reports.pop(author_id)
+            if r.type:
+                mod_channel = self.mod_channels[MOD_CHANNEL_ID]
+                await mod_channel.send(f"Report from {message.author.name}:\n{r.pretty_print()}")
 
     async def handle_channel_message(self, message):
         # Only handle messages sent in the "group-#" channel

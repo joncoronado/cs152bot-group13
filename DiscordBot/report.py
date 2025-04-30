@@ -1,4 +1,5 @@
 from enum import Enum, auto
+from datetime import datetime
 import discord
 import re
 
@@ -44,6 +45,8 @@ class Report:
         self.message = None
         self.detail = ""
         self.type = None
+        self.opened = None
+        self.message_link = None
     
     def get_harassment_type(self):
         '''
@@ -75,6 +78,7 @@ class Report:
             reply += "Please copy paste the link to the message you want to report.\n"
             reply += "You can obtain this link by right-clicking the message and clicking `Copy Message Link`."
             self.state = State.AWAITING_MESSAGE
+            self.opened = datetime.now()
             return [reply]
         
         if self.state == State.AWAITING_MESSAGE:
@@ -89,7 +93,9 @@ class Report:
             if not channel:
                 return ["It seems this channel was deleted or never existed. Please try again or say `cancel` to cancel."]
             try:
+                self.message_link = message.content
                 message = await channel.fetch_message(int(m.group(3)))
+                self.message = message
             except discord.errors.NotFound:
                 return ["It seems this message was deleted or never existed. Please try again or say `cancel` to cancel."]
 
@@ -149,6 +155,26 @@ class Report:
 
     def report_complete(self):
         return self.state == State.REPORT_COMPLETE
+    
+    def pretty_print(self):
+        """
+        Formats the report details into a user-friendly string.
+        """
+        report = "=== Report Summary ===\n"
+        if self.opened:
+            report += f"Report Opened: {self.opened.strftime('%Y-%m-%d %H:%M:%S')}\n"
+        if self.message:
+            report += f"Reported Message: {self.message.author.name}: {self.message.content}\n"
+        if self.message_link:
+            report += f"Message Link: {self.message_link}\n"
+        if self.type:
+            report += f"Harassment Type: {self.type.to_string()}\n"
+        if self.detail.strip():
+            report += f"Additional Details: {self.detail.strip()}\n"
+        else:
+            report += "Additional Details: None\n"
+        report += "======================"
+        return report
     
 
 
