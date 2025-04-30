@@ -16,6 +16,7 @@ class State(Enum):
     REPORT_COMPLETE = auto()
     REPORT_OTHER = auto()
     REPORT_HARASSMENT = auto()
+    GET_DETAIL = auto()
 
 class Report:
     START_KEYWORD = "report"
@@ -23,11 +24,23 @@ class Report:
     HELP_KEYWORD = "help"
     HARRASSMENT_KEYWORD = "harassment"
     OTHER_KEYWORD = "other"
+    COMPLETE_KEYWORD = "done"
 
     def __init__(self, client):
         self.state = State.REPORT_START
         self.client = client
         self.message = None
+        self.detail = None
+        self.type = None
+    
+    async def get_harassment_type(self):
+        reply = "Thank you for reporting this message. Please select the type of harassment you would like to report:\n"
+        reply += "1. Physical threat\n"
+        reply += "2. Hate Speech\n"
+        reply += "3. Politically Motivated\n"
+        reply += "4. Bullying\n"
+        reply += "5. Other"
+        return [reply]
     
     async def handle_message(self, message):
         '''
@@ -39,13 +52,7 @@ class Report:
         if message.content == self.CANCEL_KEYWORD:
             self.state = State.REPORT_COMPLETE
             return ["Report cancelled."]
-        if message.content == self.OTHER_KEYWORD and self.state == State.MESSAGE_IDENTIFIED:
-            self.state = State.REPORT_OTHER
-            return ["Please describe the harassment in the message in your own words. You can also say `cancel` to cancel the report."]
-        if message.content == self.HARRASSMENT_KEYWORD and self.state == State.MESSAGE_IDENTIFIED:
-            self.state = State.REPORT_HARASSMENT
-            return ["What kind of harassment is this? Please say `physical threat`, `hate speech`, `politically motivated`, `bullying`, or `other`."]
-        
+                
         if self.state == State.REPORT_START:
             reply =  "Thank you for starting the reporting process. "
             reply += "Say `help` at any time for more information.\n\n"
@@ -75,10 +82,34 @@ class Report:
             return ["I found this message:", "```" + message.author.name + ": " + message.content + "```", \
                     "What would you like to report this message for? Please say `harassment` or `other`."]
         
-        # if self.state == State.REPORT_HARASSMENT:
-        #     return ["What kind of harassment is this? Please say `physical threat`, `hate speech`, `politically motivated`, `bullying`, or `other`."]
-        # if self.state == State.REPORT_OTHER:
-        #     return ["Please describe the message in your own words. You can also say `cancel` to cancel the report."]
+        if self.state == State.MESSAGE_IDENTIFIED:
+            if message.content == self.OTHER_KEYWORD:
+                self.state = State.REPORT_OTHER
+                return ["Please describe the harassment in the message in your own words. You can also say `cancel` to cancel the report."]
+            if message.content == self.HARRASSMENT_KEYWORD:
+                self.state = State.REPORT_HARASSMENT
+                return self.get_harassment_type(message)
+        
+        if self.state == State.REPORT_HARASSMENT:
+            match message.content:
+                case "1":
+                    self.type = HarassmentReport.PHYSICAL_THREAT
+                case "2":
+                    self.type = HarassmentReport.HATE_SPEECH
+                case "3":
+                    self.type = HarassmentReport.POLITICALLY_MOTIVATED
+                case "4":
+                    self.type = HarassmentReport.BULLYING
+                case "5":
+                    self.type = HarassmentReport.OTHER
+                case _:
+                    reply = ["I'm sorry, I couldn't understand that. Please select one of the following harassment types:\n"]
+                    reply += "1. Physical threat\n"
+                    reply += "2. Hate Speech\n"
+                    reply += "3. Politically Motivated\n"
+                    reply += "4. Bullying\n"
+                    reply += "5. Other"
+                    return reply
 
         return []
 
