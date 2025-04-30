@@ -2,16 +2,27 @@ from enum import Enum, auto
 import discord
 import re
 
+class HarassmentReport(Enum):
+    PHYSICAL_THREAT = auto()
+    HATE_SPEECH = auto()
+    POLITICALLY_MOTIVATED = auto()
+    BULLYING = auto()
+    OTHER = auto()
+
 class State(Enum):
     REPORT_START = auto()
     AWAITING_MESSAGE = auto()
     MESSAGE_IDENTIFIED = auto()
     REPORT_COMPLETE = auto()
+    REPORT_OTHER = auto()
+    REPORT_HARASSMENT = auto()
 
 class Report:
     START_KEYWORD = "report"
     CANCEL_KEYWORD = "cancel"
     HELP_KEYWORD = "help"
+    HARRASSMENT_KEYWORD = "harassment"
+    OTHER_KEYWORD = "other"
 
     def __init__(self, client):
         self.state = State.REPORT_START
@@ -28,6 +39,12 @@ class Report:
         if message.content == self.CANCEL_KEYWORD:
             self.state = State.REPORT_COMPLETE
             return ["Report cancelled."]
+        if message.content == self.OTHER_KEYWORD and self.state == State.MESSAGE_IDENTIFIED:
+            self.state = State.REPORT_OTHER
+            return ["Please describe the harassment in the message in your own words. You can also say `cancel` to cancel the report."]
+        if message.content == self.HARRASSMENT_KEYWORD and self.state == State.MESSAGE_IDENTIFIED:
+            self.state = State.REPORT_HARASSMENT
+            return ["What kind of harassment is this? Please say `physical threat`, `hate speech`, `politically motivated`, `bullying`, or `other`."]
         
         if self.state == State.REPORT_START:
             reply =  "Thank you for starting the reporting process. "
@@ -56,10 +73,12 @@ class Report:
             # Here we've found the message - it's up to you to decide what to do next!
             self.state = State.MESSAGE_IDENTIFIED
             return ["I found this message:", "```" + message.author.name + ": " + message.content + "```", \
-                    "This is all I know how to do right now - it's up to you to build out the rest of my reporting flow!"]
+                    "What would you like to report this message for? Please say `harassment` or `other`."]
         
-        if self.state == State.MESSAGE_IDENTIFIED:
-            return ["<insert rest of reporting flow here>"]
+        # if self.state == State.REPORT_HARASSMENT:
+        #     return ["What kind of harassment is this? Please say `physical threat`, `hate speech`, `politically motivated`, `bullying`, or `other`."]
+        # if self.state == State.REPORT_OTHER:
+        #     return ["Please describe the message in your own words. You can also say `cancel` to cancel the report."]
 
         return []
 
