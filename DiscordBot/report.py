@@ -9,6 +9,18 @@ class HarassmentReport(Enum):
     BULLYING = auto()
     OTHER = auto()
 
+    def to_string(self):
+        if self == HarassmentReport.PHYSICAL_THREAT:
+            return "Physical Threat"
+        elif self == HarassmentReport.HATE_SPEECH:
+            return "Hate Speech"
+        elif self == HarassmentReport.POLITICALLY_MOTIVATED:
+            return "Politically Motivated"
+        elif self == HarassmentReport.BULLYING:
+            return "Bullying"
+        elif self == HarassmentReport.OTHER:
+            return "Other"
+
 class State(Enum):
     REPORT_START = auto()
     AWAITING_MESSAGE = auto()
@@ -30,17 +42,21 @@ class Report:
         self.state = State.REPORT_START
         self.client = client
         self.message = None
-        self.detail = None
+        self.detail = ""
         self.type = None
     
-    async def get_harassment_type(self):
-        reply = "Thank you for reporting this message. Please select the type of harassment you would like to report:\n"
-        reply += "1. Physical threat\n"
-        reply += "2. Hate Speech\n"
-        reply += "3. Politically Motivated\n"
-        reply += "4. Bullying\n"
-        reply += "5. Other"
-        return [reply]
+    def get_harassment_type(self):
+        '''
+        This function lists the options to the user for kinds of harassment to report.
+        '''
+        reply = "Please select the type of harassment you would like to report:\n\n"
+        reply += "1) Physical Threat\n"
+        reply += "2) Hate Speech\n"
+        reply += "3) Politically Motivated\n"
+        reply += "4) Bullying\n"
+        reply += "5) Other\n\n"
+        reply += "Or say `cancel` to cancel the report."
+        return reply
     
     async def handle_message(self, message):
         '''
@@ -88,7 +104,8 @@ class Report:
                 return ["Please describe the harassment in the message in your own words. You can also say `cancel` to cancel the report."]
             if message.content == self.HARRASSMENT_KEYWORD:
                 self.state = State.REPORT_HARASSMENT
-                return self.get_harassment_type(message)
+                reply = "Thank you for reporting this message. "
+                return [reply + self.get_harassment_type()]
         
         if self.state == State.REPORT_HARASSMENT:
             match message.content:
@@ -103,13 +120,30 @@ class Report:
                 case "5":
                     self.type = HarassmentReport.OTHER
                 case _:
-                    reply = ["I'm sorry, I couldn't understand that. Please select one of the following harassment types:\n"]
-                    reply += "1. Physical threat\n"
-                    reply += "2. Hate Speech\n"
-                    reply += "3. Politically Motivated\n"
-                    reply += "4. Bullying\n"
-                    reply += "5. Other"
-                    return reply
+                    reply = "I'm sorry, I couldn't understand that. "
+                    return [reply + self.get_harassment_type()]
+            self.state = State.GET_DETAIL
+            reply = f"You have selected {self.type.to_string()}. "
+            reply += "If you would like, please reply with any additional details you would like to provide. "
+            reply += "You can also say `done` to finish the report."
+            return [reply]
+        
+        if self.state == State.REPORT_OTHER:
+            self.detail += message.content + "\n"
+            self.state = State.GET_DETAIL
+            reply = "Thank you for your report. "
+            reply += "If you would like, please reply with any additional details you would like to provide. "
+            reply += "You can also say `done` to finish the report."
+            return [reply]
+        
+        if self.state == State.GET_DETAIL:
+            if message.content == self.COMPLETE_KEYWORD:
+                self.state = State.REPORT_COMPLETE
+                return ["Thank you for your report! It has been submitted."]
+            else:
+                self.detail += message.content
+                self.state = State.REPORT_COMPLETE
+                return ["Thank you for your report! It has been submitted."]
 
         return []
 
