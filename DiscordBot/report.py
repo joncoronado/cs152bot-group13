@@ -1,35 +1,7 @@
-from enum import Enum, auto
 from datetime import datetime
+from enums import State, ReportType, HarassmentReport
 import discord
 import re
-
-class HarassmentReport(Enum):
-    PHYSICAL_THREAT = auto()
-    HATE_SPEECH = auto()
-    POLITICALLY_MOTIVATED = auto()
-    BULLYING = auto()
-    OTHER = auto()
-
-    def to_string(self):
-        if self == HarassmentReport.PHYSICAL_THREAT:
-            return "Physical Threat"
-        elif self == HarassmentReport.HATE_SPEECH:
-            return "Hate Speech"
-        elif self == HarassmentReport.POLITICALLY_MOTIVATED:
-            return "Politically Motivated"
-        elif self == HarassmentReport.BULLYING:
-            return "Bullying"
-        elif self == HarassmentReport.OTHER:
-            return "Other"
-
-class State(Enum):
-    REPORT_START = auto()
-    AWAITING_MESSAGE = auto()
-    MESSAGE_IDENTIFIED = auto()
-    REPORT_COMPLETE = auto()
-    REPORT_OTHER = auto()
-    REPORT_HARASSMENT = auto()
-    GET_DETAIL = auto()
 
 class Report:
     START_KEYWORD = "report"
@@ -40,20 +12,33 @@ class Report:
     COMPLETE_KEYWORD = "done"
 
     def __init__(self, client):
-        self.state = State.REPORT_START
+        self.state = State.REPORT_START # State
         self.client = client
         self.message = None
         self.detail = ""
-        self.type = None
+        self.type = None                # ReportType
         self.opened = None
         self.message_link = None
+
+    def get_report_type(self):
+        '''
+        This function lists the options to the user for kinds of reports to make.
+        '''
+        reply = "Please select your reason for filing a report:\n\n"
+        reply += "1) Harassment\n"
+        reply += "2) Phishing\n"
+        reply += "3) IT Problems\n"
+        reply += "4) Inappopriate Content\n"
+        reply += "5) Unknown Member\n\n"
+        reply += "Or say `cancel` to cancel the report."
+        return reply
     
     def get_harassment_type(self):
         '''
         This function lists the options to the user for kinds of harassment to report.
         '''
         reply = "Please select the type of harassment you would like to report:\n\n"
-        reply += "1) Physical Threat\n"
+        reply += "1) Threat\n"
         reply += "2) Hate Speech\n"
         reply += "3) Politically Motivated\n"
         reply += "4) Bullying\n"
@@ -67,11 +52,16 @@ class Report:
         prompts to offer at each of those states. You're welcome to change anything you want; this skeleton is just here to
         get you started and give you a model for working with Discord. 
         '''
-
+        #############################################################################
+        #############################################################################
+        #############################################################################
         if message.content == self.CANCEL_KEYWORD:
             self.state = State.REPORT_COMPLETE
             return ["Report cancelled."]
-                
+        #############################################################################
+        #############################################################################
+        #############################################################################
+        # User starts report, get messsage link
         if self.state == State.REPORT_START:
             reply =  "Thank you for starting the reporting process. "
             reply += "Say `help` at any time for more information.\n\n"
@@ -80,7 +70,9 @@ class Report:
             self.state = State.AWAITING_MESSAGE
             self.opened = datetime.now()
             return [reply]
-        
+        #############################################################################
+        #############################################################################
+        #############################################################################
         if self.state == State.AWAITING_MESSAGE:
             # Parse out the three ID strings from the message link
             m = re.search('/(\d+)/(\d+)/(\d+)', message.content)
@@ -101,22 +93,49 @@ class Report:
 
             # Here we've found the message - it's up to you to decide what to do next!
             self.state = State.MESSAGE_IDENTIFIED
-            return ["I found this message:", "```" + message.author.name + ": " + message.content + "```", \
-                    "What would you like to report this message for? Please say `harassment` or `other`."]
-        
+            reply = "I found this message:"
+            reply += "```" + message.author.name + ": " + message.content + "```"
+            reply += "\n" + self.get_report_type()
+            return [reply]
+        #############################################################################
+        #############################################################################
+        #############################################################################
+        # Message has been identified, ask for type of report
         if self.state == State.MESSAGE_IDENTIFIED:
-            if message.content == self.OTHER_KEYWORD:
-                self.state = State.REPORT_OTHER
-                return ["Please describe the harassment in the message in your own words. You can also say `cancel` to cancel the report."]
-            if message.content == self.HARRASSMENT_KEYWORD:
-                self.state = State.REPORT_HARASSMENT
-                reply = "Thank you for reporting this message. "
-                return [reply + self.get_harassment_type()]
-        
+            match message.content:
+                case "1":
+                    self.type = ReportType.HARASSMENT
+                    self.state = State.REPORT_HARASSMENT
+                case "2":
+                    self.type = ReportType.PHISHING
+                    self.state = State.REPORT_OTHER
+                case "3":
+                    self.type = ReportType.IT_PROBLEMS
+                    self.state = State.REPORT_OTHER
+                case "4":
+                    self.type = ReportType.INAPPROPRIATE_CONTENT
+                    self.state = State.REPORT_OTHER
+                case "5":
+                    self.type = ReportType.UNKNOWN_MEMBER
+                    self.state = State.REPORT_OTHER
+                case _:
+                    reply = "I'm sorry, I couldn't understand that. "
+                    return [reply + self.get_report_type()]
+            reply = f"You have selected {self.type.to_string()}. "
+            # Get type of harassment
+            if self.type == ReportType.HARASSMENT:
+                reply += self.get_harassment_type()
+                return [reply]
+            else:
+                reply += "If you would like, please reply with any additional details you would like to provide. "
+                reply += "You can also say `done` to finish the report."
+        #############################################################################
+        #############################################################################
+        #############################################################################
         if self.state == State.REPORT_HARASSMENT:
             match message.content:
                 case "1":
-                    self.type = HarassmentReport.PHYSICAL_THREAT
+                    self.type = HarassmentReport.THREAT
                 case "2":
                     self.type = HarassmentReport.HATE_SPEECH
                 case "3":
@@ -133,7 +152,29 @@ class Report:
             reply += "If you would like, please reply with any additional details you would like to provide. "
             reply += "You can also say `done` to finish the report."
             return [reply]
-        
+        #############################################################################
+        #############################################################################
+        #############################################################################
+        # Handling harassment reports
+
+        # threats
+        if self.state == State.REPORT_HARASSMENT and self.type == HarassmentReport.THREAT:
+            self.state = State.HARASSMENT_THREAT
+            pass
+
+        # hate speech
+        elif self.state == State.REPORT_HARASSMENT and self.type == HarassmentReport.HATE_SPEECH:
+            self.state = State.HARASSMENT_HATE_SPEECH
+            pass
+
+        # bullying, SA, other
+        elif self.state == State.REPORT_HARASSMENT and self.type == HarassmentReport.BULLYING:
+            self.state = State.GET_DETAIL
+            pass
+
+        #############################################################################
+        #############################################################################
+        #############################################################################
         if self.state == State.REPORT_OTHER:
             self.detail += message.content + "\n"
             self.state = State.GET_DETAIL
@@ -141,7 +182,9 @@ class Report:
             reply += "If you would like, please reply with any additional details you would like to provide. "
             reply += "You can also say `done` to finish the report."
             return [reply]
-        
+        #############################################################################
+        #############################################################################
+        #############################################################################
         if self.state == State.GET_DETAIL:
             if message.content == self.COMPLETE_KEYWORD:
                 self.state = State.REPORT_COMPLETE
