@@ -1,5 +1,5 @@
 from datetime import datetime
-from enums import State, ReportType, HarassmentReport
+from enums import State, ReportType, HarassmentReport, Tags
 import discord
 import re
 
@@ -19,6 +19,7 @@ class Report:
         self.type = None                # ReportType
         self.opened = None
         self.message_link = None
+        self.tags = []                   # List of Tags
 
     def get_report_type(self):
         '''
@@ -191,19 +192,19 @@ class Report:
         if self.state == State.HARASSMENT_HATE_SPEECH:
             match message.content:
                 case "1":
-                    self.detail += "Hate speech was racist.\n"
+                     self.tags.append(Tags.RACISM)
                 case "2":
-                    self.detail += "Hate speech was sexist.\n"
+                    self.tags.append(Tags.SEXISM)
                 case "3":
-                    self.detail += "Hate speech was homophobic.\n"
+                    self.tags.append(Tags.HOMOPHOBIA)
                 case "4":
-                    self.detail += "Hate speech was transphobic.\n"
+                    self.tags.append(Tags.TRANSPHOBIA)
                 case "5":
-                    self.detail += "Hate speech was religious.\n"
+                    self.tags.append(Tags.RELIGIOUS_DISCRIMINATION)
                 case "6":
-                    self.detail += "Hate speech targeted ethnic/cultural groups.\n"
+                    self.tags.append(Tags.ETHNIC_CULTURAL_DISCRIMINATION)
                 case "7":
-                    self.detail += "Hate speech was other.\n"
+                    self.tags.append(Tags.OTHER)
                 case _:
                     reply = "I'm sorry, I couldn't understand that. "
                     return [reply + self.get_hate_speech_type()]
@@ -227,11 +228,11 @@ class Report:
         if self.state == State.HARASSMENT_THREAT:
             match message.content:
                 case "1":
-                    self.detail += "Threat directed at myself.\n"
+                    self.tags.append(Tags.PERSONAL_THREAT)
                 case "2":
-                    self.detail += "Threat directed at loved ones.\n"
+                    self.tags.append(Tags.LOVED_ONES_THREAT)
                 case "3":
-                    self.detail += "Threat directed at others.\n"
+                    self.tags.append(Tags.OTHER_THREAT)
                 case _:
                     reply = "I'm sorry, I couldn't understand that. "
                     return [reply + self.get_harassment_type()]
@@ -246,14 +247,14 @@ class Report:
             match message.content:
                 # violent threat ends report
                 case "1":
-                    self.detail += "Threat was violent.\n"
+                    self.tags.append(Tags.VIOLENT)
                     self.state = State.GET_DETAIL
                     reply = "Thank you for your report. "
                     reply += "If you would like, please reply with any additional details you would like to provide. "
                     reply += "You can also say `done` to finish the report."
                     return [reply]
                 case "2":
-                    self.detail += "Threat was non-violent.\n"
+                    self.tags.append(Tags.NONVIOLENT)
                     self.state = State.HARASSMENT_NONVIOLENT_THREAT
                 case _:
                     reply = "I'm sorry, I couldn't understand that. "
@@ -265,7 +266,7 @@ class Report:
             reply = "We are sorry to hear that you are experiencing this. How would you describe the nature of this threat?\n\n"
             reply += "1) Extortion\n"
             reply += "2) Blackmail\n"
-            reply += "3) Doxing\n"
+            reply += "3) Doxxing\n"
             reply += "4) Other\n\n"
             return [reply]
         
@@ -276,13 +277,13 @@ class Report:
         if self.state == State.GET_NONVIOLENT_TYPE:
             match message.content:
                 case "1":
-                    self.detail += "Threat was extortion.\n"
+                    self.tags.append(Tags.EXTORTION)
                 case "2":
-                    self.detail += "Threat was blackmail.\n"
+                    self.tags.append(Tags.BlACKMAIL)
                 case "3":
-                    self.detail += "Threat was doxing.\n"
+                    self.tags.append(Tags.DOXXING)
                 case "4":
-                    self.detail += "Threat was other.\n"
+                    self.tags.append(Tags.OTHER)
                 case _:
                     reply = "I'm sorry, I couldn't understand that. "
                     return [reply + self.get_harassment_type()]
@@ -336,6 +337,8 @@ class Report:
             report += f"Harassment Type: {self.type.to_string()}\n"
         if self.detail.strip():
             report += f"Additional Details: {self.detail.strip()}\n"
+        if self.tags:
+            report += "Tags: " + ", ".join(tag.to_string for tag in self.tags) + "\n"
         else:
             report += "Additional Details: None\n"
         report += "======================"
