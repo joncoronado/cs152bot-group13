@@ -19,7 +19,7 @@ class Report:
         self.type = None                # ReportType
         self.opened = None
         self.message_link = None
-        self.tags = []                   # List of Tags
+        self.tags = []                  # List of Tags
 
     def get_report_type(self):
         '''
@@ -338,7 +338,7 @@ class Report:
         if self.detail.strip():
             report += f"Additional Details: {self.detail.strip()}\n"
         if self.tags:
-            report += "Tags: " + ", ".join(tag.to_string for tag in self.tags) + "\n"
+            report += "Tags: " + ", ".join(tag.to_string() for tag in self.tags) + "\n"
         else:
             report += "Additional Details: None\n"
         report += "======================"
