@@ -102,7 +102,7 @@ class ModBot(discord.Client):
             r = self.reports.pop(author_id)
             if r.type:
                 mod_channel = self.mod_channels[MOD_CHANNEL_ID]
-                await mod_channel.send(f"Report from {message.author.name}:\n{r.pretty_print()}")
+                await mod_channel.send(f"Report from {message.author.name}:\n\n{r.pretty_print()}")
 
     async def handle_channel_message(self, message):
         # Only handle messages sent in the "group-#" channel

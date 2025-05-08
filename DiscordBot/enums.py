@@ -52,6 +52,7 @@ class State(Enum):
     HARASSMENT_NONVIOLENT_THREAT = auto()
     GET_VIOLENT = auto()
     GET_NONVIOLENT_TYPE = auto()
+    GET_BLOCK = auto()
 
 class Tags(Enum):
     HARASSMENT = auto()
@@ -77,6 +78,8 @@ class Tags(Enum):
     TRANSPHOBIA = auto()
     RELIGIOUS_DISCRIMINATION = auto()
     ETHNIC_CULTURAL_DISCRIMINATION = auto()
+    BLOCKED = auto()
+    NOT_BLOCKED = auto()
     OTHER = auto()
 
     def to_string(self):
@@ -126,6 +129,10 @@ class Tags(Enum):
             return "Religious Discrimination"
         elif self == Tags.ETHNIC_CULTURAL_DISCRIMINATION:
             return "Ethnic/Cultural Discrimination"
+        elif self == Tags.BLOCKED:
+            return "Blocked"
+        elif self == Tags.NOT_BLOCKED:
+            return "Not Blocked"
         elif self == Tags.OTHER:
             return "Other"
         else:
