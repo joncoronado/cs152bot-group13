@@ -22,7 +22,7 @@ class ReportType(Enum):
 class HarassmentReport(Enum):
     THREAT = auto()
     HATE_SPEECH = auto()
-    POLITICALLY_MOTIVATED = auto()
+    SEXUAL_HARASSMENT = auto()
     BULLYING = auto()
     OTHER = auto()
 
@@ -31,8 +31,8 @@ class HarassmentReport(Enum):
             return "Threat"
         elif self == HarassmentReport.HATE_SPEECH:
             return "Hate Speech"
-        elif self == HarassmentReport.POLITICALLY_MOTIVATED:
-            return "Politically Motivated"
+        elif self == HarassmentReport.SEXUAL_HARASSMENT:
+            return "Sexual Harassment"
         elif self == HarassmentReport.BULLYING:
             return "Bullying"
         elif self == HarassmentReport.OTHER:
@@ -48,4 +48,7 @@ class State(Enum):
     GET_DETAIL = auto()
     HARASSMENT_THREAT = auto()
     HARASSMENT_HATE_SPEECH = auto()
+    HARASSMENT_VIOLENT_THREAT = auto()
+    HARASSMENT_NONVIOLENT_THREAT = auto()
+    GET_VIOLENT = auto()
 

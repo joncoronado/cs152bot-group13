@@ -40,8 +40,8 @@ class Report:
         reply = "Please select the type of harassment you would like to report:\n\n"
         reply += "1) Threat\n"
         reply += "2) Hate Speech\n"
-        reply += "3) Politically Motivated\n"
-        reply += "4) Bullying\n"
+        reply += "3) Bullying\n"
+        reply += "4) Sexual Harassment\n"
         reply += "5) Other\n\n"
         reply += "Or say `cancel` to cancel the report."
         return reply
@@ -132,6 +132,7 @@ class Report:
         #############################################################################
         #############################################################################
         #############################################################################
+        # Getting harassment type
         if self.state == State.REPORT_HARASSMENT:
             match message.content:
                 case "1":
@@ -139,19 +140,19 @@ class Report:
                 case "2":
                     self.type = HarassmentReport.HATE_SPEECH
                 case "3":
-                    self.type = HarassmentReport.POLITICALLY_MOTIVATED
-                case "4":
                     self.type = HarassmentReport.BULLYING
+                case "4":
+                    self.type = HarassmentReport.SEXUAL_HARASSMENT
                 case "5":
                     self.type = HarassmentReport.OTHER
                 case _:
                     reply = "I'm sorry, I couldn't understand that. "
                     return [reply + self.get_harassment_type()]
-            self.state = State.GET_DETAIL
+            # self.state = State.GET_DETAIL
             reply = f"You have selected {self.type.to_string()}. "
-            reply += "If you would like, please reply with any additional details you would like to provide. "
-            reply += "You can also say `done` to finish the report."
-            return [reply]
+            # reply += "If you would like, please reply with any additional details you would like to provide. "
+            # reply += "You can also say `done` to finish the report."
+            # return [reply]
         #############################################################################
         #############################################################################
         #############################################################################
@@ -160,21 +161,81 @@ class Report:
         # threats
         if self.state == State.REPORT_HARASSMENT and self.type == HarassmentReport.THREAT:
             self.state = State.HARASSMENT_THREAT
-            pass
+            reply = "Who was the threat directed at? Please select from the following options:\n\n"
+            reply += "1) Myself\n"
+            reply += "2) Loved ones\n"
+            reply += "3) Other\n\n"
+            return [reply]
 
         # hate speech
-        elif self.state == State.REPORT_HARASSMENT and self.type == HarassmentReport.HATE_SPEECH:
+        if self.state == State.REPORT_HARASSMENT and self.type == HarassmentReport.HATE_SPEECH:
             self.state = State.HARASSMENT_HATE_SPEECH
-            pass
+            reply = "How would you like to classify this hate speech? Please select from the following options:\n\n"
+            reply += "1) Racism\n"
+            reply += "2) Sexism\n"
+            reply += "3) Homophobia\n"
+            reply += "4) Transphobia\n"
+            reply += "5) Religion\n"
+            reply += "6) Ethnic/Cultural Groups\n"
+            reply += "7) Other\n\n"
+            return [reply]
 
         # bullying, SA, other
-        elif self.state == State.REPORT_HARASSMENT and self.type == HarassmentReport.BULLYING:
+        if self.state == State.REPORT_HARASSMENT:
             self.state = State.GET_DETAIL
             pass
+        #############################################################################
+        #############################################################################
+        #############################################################################
+        # who was threat directed at?
+        if self.state == State.HARASSMENT_THREAT:
+            match message.content:
+                case "1":
+                    self.detail += "Threat directed at myself.\n"
+                case "2":
+                    self.detail += "Threat directed at loved ones.\n"
+                case "3":
+                    self.detail += "Threat directed at others.\n"
+                case _:
+                    reply = "I'm sorry, I couldn't understand that. "
+                    return [reply + self.get_harassment_type()]
+            self.state = State.GET_VIOLENT
+            reply = "We are sorry to hear that you are experiencing this. Was this threat violent in nature?\n\n"
+            reply += "1) Yes\n"
+            reply += "2) No\n"
+            return [reply]
+        
+        # check if threat was violent
+        if self.state == State.GET_VIOLENT:
+            match message.content:
+                case "1":
+                    self.detail += "Threat was violent.\n"
+                    self.state = State.HARASSMENT_VIOLENT_THREAT
+                case "2":
+                    self.detail += "Threat was non-violent.\n"
+                    self.state = State.HARASSMENT_NONVIOLENT_THREAT
+                case _:
+                    reply = "I'm sorry, I couldn't understand that. "
+                    return [reply + self.get_harassment_type()]
+                
+        # violent threat
+        if self.state == State.HARASSMENT_VIOLENT_THREAT:
+            pass
+        # non-violent threat
+        if self.state == State.HARASSMENT_NONVIOLENT_THREAT:
+            pass
+            # self.state = State.GET_DETAIL
+            # reply = "Thank you for your report. "
+            # reply += "If you would like, please reply with any additional details you would like to provide. "
+            # reply += "You can also say `done` to finish the report."
+            # return [reply]
+
 
         #############################################################################
         #############################################################################
         #############################################################################
+        # Handling other reports (not harassment)
+        
         if self.state == State.REPORT_OTHER:
             self.detail += message.content + "\n"
             self.state = State.GET_DETAIL
