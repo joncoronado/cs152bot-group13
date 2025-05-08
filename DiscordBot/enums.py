@@ -51,4 +51,5 @@ class State(Enum):
     HARASSMENT_VIOLENT_THREAT = auto()
     HARASSMENT_NONVIOLENT_THREAT = auto()
     GET_VIOLENT = auto()
+    GET_NONVIOLENT_TYPE = auto()
 
