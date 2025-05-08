@@ -247,7 +247,6 @@ class Report:
                 # violent threat ends report
                 case "1":
                     self.detail += "Threat was violent.\n"
-                    self.detail += message.content + "\n"
                     self.state = State.GET_DETAIL
                     reply = "Thank you for your report. "
                     reply += "If you would like, please reply with any additional details you would like to provide. "
@@ -300,7 +299,6 @@ class Report:
         # Handling other reports (not harassment)
         
         if self.state == State.REPORT_OTHER:
-            self.detail += message.content + "\n"
             self.state = State.GET_DETAIL
             reply = "Thank you for your report. "
             reply += "If you would like, please reply with any additional details you would like to provide. "
@@ -313,6 +311,7 @@ class Report:
 
         if self.state == State.GET_DETAIL:
             if message.content != self.COMPLETE_KEYWORD:
+                self.detail += "User provided additional details: "
                 self.detail += message.content
             self.state = State.REPORT_COMPLETE
             return ["Thank you for your report! It has been submitted."]
