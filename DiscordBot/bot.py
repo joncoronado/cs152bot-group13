@@ -157,16 +157,17 @@ class ModBot(discord.Client):
 
     async def handle_channel_message(self, message):
         # Only handle messages sent in the "group-#" channel
-        if not message.channel.name == f'group-{self.group_num}':
-            return
+        # if not message.channel.name == f'group-{self.group_num}':
+        #     return
 
-        # Forward the message to the mod channel
-        # TODO: Add some sort of check to only send messages that are relevant to the mod channel
+        # # Forward the message to the mod channel
+        # # TODO: Add some sort of check to only send messages that are relevant to the mod channel
         
-        mod_channel = self.mod_channels[message.guild.id]
-        await mod_channel.send(f'Forwarded message:\n{message.author.name}: "{message.content}"')
-        scores = self.eval_text(message.content)
-        await mod_channel.send(self.code_format(scores))
+        # mod_channel = self.mod_channels[message.guild.id]
+        # await mod_channel.send(f'Forwarded message:\n{message.author.name}: "{message.content}"')
+        # scores = self.eval_text(message.content)
+        # await mod_channel.send(self.code_format(scores))
+        return
 
     def get_moderation_guidelines(self):
         reply = "1) Report **tangible violent threats** to authorities.\n"
