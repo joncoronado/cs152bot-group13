@@ -7,7 +7,6 @@ class Report:
     START_KEYWORD = "report"
     CANCEL_KEYWORD = "cancel"
     HELP_KEYWORD = "help"
-    HARRASSMENT_KEYWORD = "harassment"
     OTHER_KEYWORD = "other"
     COMPLETE_KEYWORD = "done"
 
@@ -219,13 +218,13 @@ class Report:
                 case "1":
                     # say that user has been blocked
                     self.tags.append(Tags.BLOCKED)
-                    reply = "The user has been blocked. "
+                    reply = "The user has been blocked. Your report has been filed and will be reviewed shortly. "
                     self.state  = State.REPORT_COMPLETE
                     return [reply]
                 case "2":
                     # say that user has not been blocked
                     self.tags.append(Tags.NOT_BLOCKED)
-                    reply = "The user has not been blocked. "
+                    reply = "The user has not been blocked. Your report has been filed and will be reviewed shortly. "
                     self.state = State.REPORT_COMPLETE
                     return [reply]
                 case _:
@@ -320,7 +319,7 @@ class Report:
                 case "1":
                     self.tags.append(Tags.EXTORTION)
                 case "2":
-                    self.tags.append(Tags.BlACKMAIL)
+                    self.tags.append(Tags.BLACKMAIL)
                 case "3":
                     self.tags.append(Tags.DOXXING)
                 case "4":
@@ -367,17 +366,18 @@ class Report:
         """
         report = "=== Report Summary ===\n"
         if self.message:
-            report += f"Reported Message: {self.message.author.name}: {self.message.content}\n"
+            report += f"**Reported User:** {self.message.author.name}\n"
+            report += f"**Reported Message:** *{self.message.content}*\n"
         if self.message_link:
-            report += f"Message Link: {self.message_link}\n"
+            report += f"**Message Link:** {self.message_link}\n"
         if self.opened:
-            report += f"Report Opened: {self.opened.strftime('%Y-%m-%d %H:%M:%S')}\n"
+            report += f"**Report Opened:** {self.opened.strftime('%Y-%m-%d %H:%M:%S')}\n"
         if self.type:
-            report += f"Harassment Type: {self.type.to_string()}\n"
+            report += f"**Harassment Type:** {self.type.to_string()}\n"
         if self.detail.strip():
-            report += f"Additional Details: {self.detail.strip()}\n"
+            report += f"**Additional Details:** {self.detail.strip()}\n"
         if self.tags:
-            report += "Tags: " + ", ".join(tag.to_string() for tag in self.tags) + "\n"
+            report += "**Tags:** " + ", ".join(tag.to_string() for tag in self.tags) + "\n"
         else:
             report += "Additional Details: None\n"
         report += "======================"

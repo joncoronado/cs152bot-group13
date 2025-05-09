@@ -70,7 +70,7 @@ class Tags(Enum):
     LOVED_ONES_THREAT = auto()
     OTHER_THREAT = auto()
     EXTORTION = auto()
-    BlACKMAIL = auto()
+    BLACKMAIL = auto()
     DOXXING = auto()
     RACISM = auto()
     SEXISM = auto()

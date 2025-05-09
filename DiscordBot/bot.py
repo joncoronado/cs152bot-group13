@@ -1,5 +1,6 @@
 # bot.py
 import discord
+from strike_handling import *
 from discord.ext import commands
 import os
 import json
@@ -36,6 +37,51 @@ class ModBot(discord.Client):
         self.group_num = None
         self.mod_channels = {} # Map from guild to the mod channel id for that guild
         self.reports = {} # Map from user IDs to the state of their report
+        self.strikes = load_strikes() # Map from user IDs to the number of strikes they have
+    
+    async def handle_strikes(self, report):
+        user_id = report.message.author.name
+
+        if user_id in self.strikes['user_id'].values:
+            self.strikes.loc[self.strikes['user_id'] == user_id, 'num_strikes'] += 1
+        else:
+            new_row = {'user_id': user_id, 'num_strikes': 1}
+            self.strikes = pd.concat([self.strikes, pd.DataFrame([new_row])], ignore_index=True)
+
+        save_strikes(self.strikes)
+        num_strikes = self.strikes.loc[self.strikes['user_id'] == user_id, 'num_strikes'].iloc[0]
+        reply = f"This is strike {num_strikes} for user {user_id}. "
+
+        user_dm = report.message.author
+        dm = f"You have received a strike the following message which violates our community guidelines:\n\n *{report.message.content}*\n\n This is strike {num_strikes}. "
+
+        # warning
+        if num_strikes < 3:
+            reply += "A warning has been issued."
+        # take down post, notify user that they are under review
+        elif num_strikes == 3:
+            reply += "The post should be taken down and the user will be notified that they are under review."
+            dm += "Your post has been taken down and your account is under review. "
+        # freeze account for 72hrs
+        elif num_strikes == 4:
+            reply += "The account should be frozen for 72 hours."
+            dm += "Your account has been frozen for 72 hours. "
+        # freeze account for 1 week
+        elif num_strikes == 5:
+            reply += "The account should be frozen for 1 week."
+            dm += "Your account has been frozen for 1 week. "
+        # freeze account for 30 days
+        elif num_strikes == 6:
+            reply += "The account should be frozen for 30 days."
+            dm += "Your account has been frozen for 30 days. "
+        # freeze account indefinitely
+        elif num_strikes == 7:
+            reply += "The account should be frozen indefinitely."
+            dm += "Your account has been frozen indefinitely. "
+
+        dm += "**Further strikes will have more severe consequences.**"
+        await user_dm.send(dm)
+        return reply
 
     async def on_ready(self):
         print(f'{self.user.name} has connected to Discord! It is these guilds:')
@@ -91,7 +137,7 @@ class ModBot(discord.Client):
         if author_id not in self.reports:
             self.reports[author_id] = Report(self)
 
-        # Let the report class handle this message; forward all the messages it returns to uss
+        # Let the report class handle this message; forward all the messages it returns to us
         responses = await self.reports[author_id].handle_message(message)
         for r in responses:
             await message.channel.send(r)
@@ -101,8 +147,13 @@ class ModBot(discord.Client):
         if self.reports[author_id].report_complete():
             r = self.reports.pop(author_id)
             if r.type:
+                mod_message = f"Report from **{message.author.name}:**\n\n{r.pretty_print()}"
+                mod_message += "\n\nModeration guidelines:\n"
+                mod_message += self.get_moderation_guidelines() + "\n"
+                mod_message += await self.handle_strikes(r)
+
                 mod_channel = self.mod_channels[MOD_CHANNEL_ID]
-                await mod_channel.send(f"Report from {message.author.name}:\n\n{r.pretty_print()}")
+                await mod_channel.send(mod_message)
 
     async def handle_channel_message(self, message):
         # Only handle messages sent in the "group-#" channel
@@ -116,6 +167,12 @@ class ModBot(discord.Client):
         await mod_channel.send(f'Forwarded message:\n{message.author.name}: "{message.content}"')
         scores = self.eval_text(message.content)
         await mod_channel.send(self.code_format(scores))
+
+    def get_moderation_guidelines(self):
+        reply = "1) Report **tangible violent threats** to authorities.\n"
+        reply += "2) Report **doxxing** to authorities.\n"
+        reply += "3) Report **blackmail, extortion, etc** to authorities at **moderator discretion.**\n"
+        return reply
 
     
     def eval_text(self, message):
