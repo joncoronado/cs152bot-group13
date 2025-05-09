@@ -350,7 +350,6 @@ class Report:
 
         if self.state == State.GET_DETAIL:
             if message.content != self.COMPLETE_KEYWORD:
-                self.detail += "User provided additional details: "
                 self.detail += message.content
             self.state = State.REPORT_COMPLETE
             return ["Thank you for your report! It has been submitted."]
