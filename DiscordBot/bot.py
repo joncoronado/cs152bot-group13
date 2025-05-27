@@ -9,6 +9,7 @@ import re
 import requests
 from report import Report
 import pdb
+from automation import classify_message
 
 # Set up logging to the console
 logger = logging.getLogger('discord')
@@ -162,11 +163,14 @@ class ModBot(discord.Client):
 
         # # Forward the message to the mod channel
         # # TODO: Add some sort of check to only send messages that are relevant to the mod channel
+        classification = classify_message(message.content)
+        if classification.startswith("Not harassment"):
+            return
         
-        # mod_channel = self.mod_channels[message.guild.id]
-        # await mod_channel.send(f'Forwarded message:\n{message.author.name}: "{message.content}"')
-        # scores = self.eval_text(message.content)
-        # await mod_channel.send(self.code_format(scores))
+        mod_channel = self.mod_channels[message.guild.id]
+        forwarded_message = f'**Forwarded message:\n{message.author.name}:** *{message.content}*\n\n'
+        forwarded_message += f'**Classification:** {classification}'
+        await mod_channel.send(forwarded_message)
         return
 
     def get_moderation_guidelines(self):
