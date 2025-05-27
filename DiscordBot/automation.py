@@ -17,11 +17,11 @@ client = OpenAI(api_key=tokens["openai"])
 
 def classify_message(message):
     response = client.chat.completions.create(model="gpt-4",
-    messages = [{"role": "system", "content": "You are a content moderation system. Classify each input as either harassment or not harassment. If harassment, choose one of the following [Threats, Hate Speech, Bullying, Sexual Harassment, Other] and explain why. If not harassment, simply respond with 'Not harassment'."},
+    messages = [{"role": "system", "content": "You are a content moderation system. Classify each input as either harassment or not harassment. If harassment, choose one of the following [Threats, Hate Speech, Bullying, Sexual Harassment, Other] and explain why. If not harassment, simply respond with 'Not harassment' and explain why."},
             {"role": "user", "content": "I am going to release inappropriate photos of Ronny if he doesn't give me a million dollars"},
             {"role": "assistant", "content": "Harassment: Threat. The user is threatening to blackmail Ronny."},
             {"role": "user", "content": "I love bullying"},
-            {"role": "assistant", "content": "Not harassment"},
+            {"role": "assistant", "content": "Not harassment. The user is expressing a personal preference."},
             {"role": "user", "content": "Fuck you Ronny im going to beat you up"},
             {"role": "assistant", "content": "Harassment: Threat. The user is threatening to hurt Ronny."},
             {"role": "user", "content": "George's address is 728 Winding Maple Drive Stonebrook, IL 60458 United States. I'll see you there tomorrow. Bring torches"},
