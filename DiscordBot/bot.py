@@ -164,8 +164,6 @@ class ModBot(discord.Client):
         # # Forward the message to the mod channel
         # # TODO: Add some sort of check to only send messages that are relevant to the mod channel
         classification = classify_message(message.content)
-        if classification.startswith("Not harassment"):
-            return
         
         mod_channel = self.mod_channels[message.guild.id]
         forwarded_message = f'**Forwarded message:\n{message.author.name}:** *{message.content}*\n\n'
