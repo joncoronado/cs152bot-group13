@@ -54,87 +54,30 @@ class State(Enum):
     GET_NONVIOLENT_TYPE = auto()
     GET_BLOCK = auto()
 
-class Tags(Enum):
-    HARASSMENT = auto()
-    PHISHING = auto()
-    IT_PROBLEMS = auto()
-    INAPPROPRIATE_CONTENT = auto()
-    UNKNOWN_MEMBER = auto()
-    THREAT = auto()
-    HATE_SPEECH = auto()
-    SEXUAL_HARASSMENT = auto()
-    BULLYING = auto()
-    VIOLENT = auto()
-    NONVIOLENT = auto()
-    PERSONAL_THREAT = auto()
-    LOVED_ONES_THREAT = auto()
-    OTHER_THREAT = auto()
-    EXTORTION = auto()
-    BLACKMAIL = auto()
-    DOXXING = auto()
-    RACISM = auto()
-    SEXISM = auto()
-    HOMOPHOBIA = auto()
-    TRANSPHOBIA = auto()
-    RELIGIOUS_DISCRIMINATION = auto()
-    ETHNIC_CULTURAL_DISCRIMINATION = auto()
-    BLOCKED = auto()
-    NOT_BLOCKED = auto()
-    OTHER = auto()
-
-    def to_string(self):
-        if self == Tags.HARASSMENT:
-            return "Harassment"
-        elif self == Tags.PHISHING:
-            return "Phishing"
-        elif self == Tags.IT_PROBLEMS:
-            return "IT Problems"
-        elif self == Tags.INAPPROPRIATE_CONTENT:
-            return "Inappropriate Content"
-        elif self == Tags.UNKNOWN_MEMBER:
-            return "Unknown Member"
-        elif self == Tags.THREAT:
-            return "Threat"
-        elif self == Tags.HATE_SPEECH:
-            return "Hate Speech"
-        elif self == Tags.SEXUAL_HARASSMENT:
-            return "Sexual Harassment"
-        elif self == Tags.BULLYING:
-            return "Bullying"
-        elif self == Tags.VIOLENT:
-            return "Violent Threat"
-        elif self == Tags.NONVIOLENT:
-            return "Nonviolent Threat"
-        elif self == Tags.PERSONAL_THREAT:
-            return "Personal Threat"
-        elif self == Tags.LOVED_ONES_THREAT:
-            return "Loved Ones Threat"
-        elif self == Tags.OTHER_THREAT:
-            return "Other Threat"
-        elif self == Tags.EXTORTION:
-            return "Extortion"
-        elif self == Tags.BLACKMAIL:
-            return "Blackmail"
-        elif self == Tags.DOXXING:
-            return "Doxxing"
-        elif self == Tags.RACISM:
-            return "Racism"
-        elif self == Tags.SEXISM:
-            return "Sexism"
-        elif self == Tags.HOMOPHOBIA:
-            return "Homophobia"
-        elif self == Tags.TRANSPHOBIA:
-            return "Transphobia"
-        elif self == Tags.RELIGIOUS_DISCRIMINATION:
-            return "Religious Discrimination"
-        elif self == Tags.ETHNIC_CULTURAL_DISCRIMINATION:
-            return "Ethnic/Cultural Discrimination"
-        elif self == Tags.BLOCKED:
-            return "Blocked"
-        elif self == Tags.NOT_BLOCKED:
-            return "Not Blocked"
-        elif self == Tags.OTHER:
-            return "Other"
-        else:
-            return "Unknown"
-
+class Tags(str, Enum):
+    HARASSMENT = "Harassment"
+    PHISHING = "Phishing"
+    IT_PROBLEMS = "IT Problems"
+    INAPPROPRIATE_CONTENT = "Inappropriate Content"
+    UNKNOWN_MEMBER = "Unknown Member"
+    THREAT = "Threat"
+    HATE_SPEECH = "Hate Speech"
+    SEXUAL_HARASSMENT = "Sexual Harassment"
+    BULLYING = "Bullying"
+    VIOLENT = "Violent Threat"
+    NONVIOLENT = "Nonviolent Threat"
+    PERSONAL_THREAT = "Personal Threat"
+    LOVED_ONES_THREAT = "Loved Ones Threat"
+    OTHER_THREAT = "Other Threat"
+    EXTORTION = "Extortion"
+    BLACKMAIL = "Blackmail"
+    DOXXING = "Doxxing"
+    RACISM = "Racism"
+    SEXISM = "Sexism"
+    HOMOPHOBIA = "Homophobia"
+    TRANSPHOBIA = "Transphobia"
+    RELIGIOUS_DISCRIMINATION = "Religious Discrimination"
+    ETHNIC_CULTURAL_DISCRIMINATION = "Ethnic/Cultural Discrimination"
+    BLOCKED = "Blocked"
+    NOT_BLOCKED = "Not Blocked"
+    OTHER = "Other"

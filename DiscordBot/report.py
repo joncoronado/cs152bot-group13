@@ -141,7 +141,7 @@ class Report:
                 case _:
                     reply = "I'm sorry, I couldn't understand that. "
                     return [reply + self.get_report_type()]
-            reply = f"You have selected {self.type.to_string()}. "
+            reply = f"You have selected {str(self.type)}. "
             # Get type of harassment
             if self.type == ReportType.HARASSMENT:
                 reply += self.get_harassment_type()
@@ -173,7 +173,7 @@ class Report:
                 case _:
                     reply = "I'm sorry, I couldn't understand that. "
                     return [reply + self.get_harassment_type()]
-            reply = f"You have selected {self.type.to_string()}. "
+            reply = f"You have selected {str(self.type)}. "
         #############################################################################
         #############################################################################
         #############################################################################
@@ -372,11 +372,11 @@ class Report:
         if self.opened:
             report += f"**Report Opened:** {self.opened.strftime('%Y-%m-%d %H:%M:%S')}\n"
         if self.type:
-            report += f"**Harassment Type:** {self.type.to_string()}\n"
+            report += f"**Harassment Type:** {str(self.type)}\n"
         if self.detail.strip():
             report += f"**Additional Details:** {self.detail.strip()}\n"
         if self.tags:
-            report += "**Tags:** " + ", ".join(tag.to_string() for tag in self.tags) + "\n"
+            report += "**Tags:** " + ", ".join(str(tag) for tag in self.tags) + "\n"
         else:
             report += "Additional Details: None\n"
         report += "======================"
