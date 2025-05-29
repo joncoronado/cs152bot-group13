@@ -67,6 +67,14 @@ context = [
     {
         "role": "assistant",
         "content": "{\"harassment\": true, \"tags\": [\"Harassment\", \"Bullying\"], \"reasoning\": \"The message implies that Jonathan's smell is bad enough that they want to self harm.\"}"
+    },
+    {
+        "role": "user",
+        "content": "Alex's ass looks great!"
+    },
+    {
+        "role": "assistant",
+        "content": "{\"harassment\": true, \"tags\": [\"Harassment\", \"Sexual Harassment\"], \"reasoning\": \"The message is objectifying Alex in a sexual manner.\"}"
     }
 ]
 
