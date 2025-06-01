@@ -21,7 +21,6 @@ with open(developer_message_path) as dev_f:
     developer_message = dev_f.read()
 
 def classify_message(message, context):
-    print(len(context))
     if len(context) > 50:
         context = context[-50:]
 
