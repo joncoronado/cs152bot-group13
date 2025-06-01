@@ -202,7 +202,10 @@ class ModBot(discord.Client):
 
         forwarded_message = f'**Forwarded message:\n{message.author.name}:** *{message.content}*\n\n'
         forwarded_message += '**Analysis:**\n'
-        forwarded_message += f'* **Harassment:** {classification.harassment}\n'
+        if classification.harassment:
+            forwarded_message += f'* **Harassment:** 🚨{classification.harassment}🚨\n'
+        else:
+            forwarded_message += f'* **Harassment:** {classification.harassment}\n'
         if classification.tags:
             forwarded_message += '* **Tags:** ' + ', '.join(classification.tags) + '\n'
         forwarded_message += f'* **Reasoning:** {classification.reasoning}\n'
