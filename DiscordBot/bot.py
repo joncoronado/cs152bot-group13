@@ -200,22 +200,17 @@ class ModBot(discord.Client):
         
         mod_channel = self.mod_channels[message.guild.id]
 
-        forwarded_message = f'**Forwarded message:\n{message.author.name}:** *{message.content}*\n\n'
-        forwarded_message += '**Analysis:**\n'
         if classification.harassment:
-            forwarded_message += f'* **Harassment:** 🚨{classification.harassment}🚨\n'
-        else:
+            forwarded_message = f'**Forwarded message:\n{message.author.name}:** *{message.content}*\n\n'
+            forwarded_message += '**Analysis:**\n'
             forwarded_message += f'* **Harassment:** {classification.harassment}\n'
-        if classification.tags:
             forwarded_message += '* **Tags:** ' + ', '.join(classification.tags) + '\n'
-        forwarded_message += f'* **Reasoning:** {classification.reasoning}\n'
-
-        if classification.harassment:
+            forwarded_message += f'* **Reasoning:** {classification.reasoning}\n'
             forwarded_message += '* **Recommendation:** '
             forwarded_message += await self.handle_strikes(message)
             forwarded_message += '\n\n**Moderation guidelines:**\n' + self.get_moderation_guidelines()
-        await asyncio.sleep(1)
-        await mod_channel.send(forwarded_message)
+            await asyncio.sleep(1)
+            await mod_channel.send(forwarded_message)
         return
 
     def get_moderation_guidelines(self):
