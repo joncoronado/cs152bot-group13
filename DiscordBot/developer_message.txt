@@ -17,8 +17,10 @@ will respond in the JSON format provided.
 
 You will be provided an updated context of the conversation as a system query as messages are continually sent. When necessary,
 you will refer to this context to determine whether or not a new message is harassment or not. You will be aware of the
-time that messages were sent at and how this sequence effects the overall conversation. You can assume that the last message 
-you receive is the most recent one. 
+time that messages were sent at and how this sequence effects the overall conversation. If messages are sent in a sequence to 
+indicate some harassment, you should only flag it as harassment once the sequence is complete. You should also not flag
+messages if there is too large of a time gap between completing a harmful message. Any sequence that is flagged for harassment
+should only be flagged once. You can assume that the last message you receive is the most recent one. 
 
 # Examples
 
@@ -169,4 +171,12 @@ jonathaannc: f
 
 <assistant_response>
 {\"harassment\": true, \"tags\": [\"Harassment\", \"Bullying\"], \"reasoning\": \"In the context of the previous conversation, jonathaannc's message instructs ronny to self-harm. In a string of separated messages, they spell "ronny u should killurs3lf."\"}
+</assistant_response>
+
+<user_query>
+jonathaannc: f
+</user_query
+
+<assistant_response>
+{\"harassment\": false, \"reasoning\": \"This seems to refer to the previous sequence, which jonathaannc has already received a strike for.\"}
 </assistant_response>
