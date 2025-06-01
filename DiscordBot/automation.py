@@ -15,25 +15,22 @@ with open(tokens_path) as f:
     tokens = json.load(f)
 client = OpenAI(api_key=tokens["openai"])
 
-context = [
-    {
-        "role": "system", 
-        "content": "You are a content moderation system. Classify each input as either harassment or not harassment. If harassment, specify the tags. Potential tags: [Harassment, Phishing, IT Problems, Inappropriate Content, Unknown Member, Threat, Hate Speech, Sexual Harassment, Bullying, Violent Threat, Nonviolent Threat, Personal Threat, Loved Ones Threat, Other Threat, Extortion, Blackmail, Doxxing, Racism, Sexism, Homophobia, Transphobia, Religious Discrimination, Ethnic/Cultural Discrimination, Blocked, Not Blocked, Other]."
-    },
-    {
-        "role": "user",
-        "content": "Alex's ass looks great!"
-    },
-    {
-        "role": "assistant",
-        "content": "{\"harassment\": true, \"tags\": [\"Harassment\", \"Sexual Harassment\"], \"reasoning\": \"The message is objectifying Alex in a sexual manner.\"}"
-    }
-]
 
-def classify_message(message):
+developer_message_path = os.path.join(os.path.dirname(__file__), 'developer_message.txt')
+with open(developer_message_path) as dev_f:
+    developer_message = dev_f.read()
+
+def classify_message(message, context):
+    print(len(context))
+    if len(context) > 50:
+        context = context[-50:]
+
     response = client.beta.chat.completions.parse(
         model="gpt-4o",
-        messages=context + [
+        messages=[
+            {"role": "system", "content": "You are a content moderation system. You will follow developer-supplied instructions."},
+            {"role": "developer", "content": developer_message},
+            {"role": "system", "content": f'{context}'},
             {"role": "user", "content": message}
         ],
         response_format=HarassmentClassification,

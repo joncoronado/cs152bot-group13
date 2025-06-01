@@ -1,4 +1,5 @@
 # bot.py
+import asyncio
 import discord
 from strike_handling import *
 from discord.ext import commands
@@ -19,6 +20,7 @@ handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(me
 logger.addHandler(handler)
 
 MOD_CHANNEL_ID = 1356427907035041953
+context_path = 'context.json'
 
 # There should be a file called 'tokens.json' inside the same folder as this file
 token_path = 'tokens.json'
@@ -90,6 +92,7 @@ class ModBot(discord.Client):
 
         reply += recommendation
         dm += user_message
+        await asyncio.sleep(1)
         await user_dm.send(dm)
         return reply
 
@@ -133,6 +136,7 @@ class ModBot(discord.Client):
         if message.content == Report.HELP_KEYWORD:
             reply =  "Use the `report` command to begin the reporting process.\n"
             reply += "Use the `cancel` command to cancel the report process.\n"
+            await asyncio.sleep(1) 
             await message.channel.send(reply)
             return
 
@@ -150,6 +154,7 @@ class ModBot(discord.Client):
         # Let the report class handle this message; forward all the messages it returns to us
         responses = await self.reports[author_id].handle_message(message)
         for r in responses:
+            await asyncio.sleep(1)
             await message.channel.send(r)
 
         # If the report is complete or cancelled, remove it from our map
@@ -163,14 +168,35 @@ class ModBot(discord.Client):
                 mod_message += await self.handle_strikes(r.message)
 
                 mod_channel = self.mod_channels[MOD_CHANNEL_ID]
+                await asyncio.sleep(1)
                 await mod_channel.send(mod_message)
+
+
+    async def get_context(self):
+        with open(context_path) as context_file:
+            context = json.load(context_file)
+        return context
+
+    async def add_message_to_context(self, message, context):
+        new_message = {
+            "user": message.author.name,
+            "message": message.content,
+            "timestamp": message.created_at.isoformat()
+        }
+        context.append(new_message)
+
+        with open(context_path, 'w') as context_file:
+            json.dump(context, context_file, indent=4)
 
     async def handle_channel_message(self, message):
         # Only handle messages sent in the "group-#" channel
         if not message.channel.name == f'group-{self.group_num}':
             return
         
-        classification = classify_message(message.content)
+        context = await self.get_context()
+        await self.add_message_to_context(message, context)
+        
+        classification = classify_message(message.content, context)
         
         mod_channel = self.mod_channels[message.guild.id]
 
@@ -185,7 +211,7 @@ class ModBot(discord.Client):
             forwarded_message += '* **Recommendation:** '
             forwarded_message += await self.handle_strikes(message)
             forwarded_message += '\n\n**Moderation guidelines:**\n' + self.get_moderation_guidelines()
-        
+        await asyncio.sleep(1)
         await mod_channel.send(forwarded_message)
         return
 
