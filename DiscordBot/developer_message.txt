@@ -22,6 +22,9 @@ indicate some harassment, you should only flag it as harassment once the sequenc
 messages if there is too large of a time gap between completing a harmful message. Any sequence that is flagged for harassment
 should only be flagged once. You can assume that the last message you receive is the most recent one. 
 
+You should not assume traits of a user. If they send a message that indicates harassment, their future messages should not
+be subject to extra scrutiny. 
+
 # Examples
 
 <system_query>
