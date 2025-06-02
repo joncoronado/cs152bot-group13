@@ -23,7 +23,8 @@ messages if there is too large of a time gap between completing a harmful messag
 should only be flagged once. You can assume that the last message you receive is the most recent one. 
 
 You should not assume traits of a user. If they send a message that indicates harassment, their future messages should not
-be subject to extra scrutiny. 
+be subject to extra scrutiny. In the examples below, this means that if jonathaannc were to mention Ronny again, he should not
+automatically be flagged for harassment.
 
 # Examples
 
@@ -182,4 +183,12 @@ jonathaannc: f
 
 <assistant_response>
 {\"harassment\": false, \"reasoning\": \"This seems to refer to the previous sequence, which jonathaannc has already received a strike for.\"}
+</assistant_response>
+
+<user_query>
+jonathaannc: ronny
+</user_query
+
+<assistant_response>
+{\"harassment\": false, \"reasoning\": \"This seems to refer to the previous sequence where jonathaannc insulted Ronny, which jonathaannc has already received a strike for.\"}
 </assistant_response>

@@ -203,12 +203,19 @@ class ModBot(discord.Client):
         if classification.harassment:
             forwarded_message = f'**Forwarded message:\n{message.author.name}:** *{message.content}*\n\n'
             forwarded_message += '**Analysis:**\n'
-            forwarded_message += f'* **Harassment:** {classification.harassment}\n'
+            forwarded_message += f'* **Harassment:** 🚨🚨{classification.harassment}🚨🚨\n'
             forwarded_message += '* **Tags:** ' + ', '.join(classification.tags) + '\n'
             forwarded_message += f'* **Reasoning:** {classification.reasoning}\n'
             forwarded_message += '* **Recommendation:** '
             forwarded_message += await self.handle_strikes(message)
             forwarded_message += '\n\n**Moderation guidelines:**\n' + self.get_moderation_guidelines()
+            await asyncio.sleep(1)
+            await mod_channel.send(forwarded_message)
+        else:
+            forwarded_message = f'**Forwarded message:\n{message.author.name}:** *{message.content}*\n\n'
+            forwarded_message += '**Analysis:**\n'
+            forwarded_message += f'* **Harassment:** {classification.harassment}\n'
+            forwarded_message += f'* **Reasoning:** {classification.reasoning}\n'
             await asyncio.sleep(1)
             await mod_channel.send(forwarded_message)
         return
