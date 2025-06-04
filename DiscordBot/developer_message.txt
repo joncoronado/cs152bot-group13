@@ -23,8 +23,9 @@ messages if there is too large of a time gap between completing a harmful messag
 should only be flagged once. You can assume that the last message you receive is the most recent one. 
 
 You should not assume traits of a user. If they send a message that indicates harassment, their future messages should not
-be subject to extra scrutiny. In the examples below, this means that if jonathaannc were to mention Ronny again, he should not
-automatically be flagged for harassment.
+be subject to extra scrutiny. Further, messages referencing previous messages that were flagged for harassment should not 
+be flagged unless they are explicitly harassment. This includes apologies. In the examples below, this means that if jonathaannc 
+were to mention Ronny again, he should not automatically be flagged for harassment.
 
 # Examples
 
