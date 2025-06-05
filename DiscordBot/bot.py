@@ -11,7 +11,7 @@ import requests
 from report import Report
 import pdb
 from automation import classify_message
-from google_trans_new import google_translator  
+from deep_translator import GoogleTranslator, single_detection
 
 # Set up logging to the console
 logger = logging.getLogger('discord')
@@ -20,10 +20,10 @@ handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w'
 handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
 logger.addHandler(handler)
 
+translator = GoogleTranslator(source='auto', target='en')
+
 MOD_CHANNEL_ID = 1356427907035041953
 context_path = 'context.json'
-
-translator = google_translator()
 
 # There should be a file called 'tokens.json' inside the same folder as this file
 token_path = 'tokens.json'
@@ -33,6 +33,7 @@ with open(token_path) as f:
     # If you get an error here, it means your token is formatted incorrectly. Did you put it in quotes?
     tokens = json.load(f)
     discord_token = tokens['discord']
+    translator_token = tokens['detectlanguage']
 
 
 class ModBot(discord.Client):
@@ -198,9 +199,9 @@ class ModBot(discord.Client):
         
         context = await self.get_context()
 
-        if translator.detect(message.content).lang != 'en':
-            message.content = translator.translate(message.content, lang_tgt='en')
-            
+        if single_detection(message.content, api_key=translator_token) != 'en':
+            message.content = translator.translate(message.content)
+
         await self.add_message_to_context(message, context)
         
         classification = classify_message(message.content, context)
