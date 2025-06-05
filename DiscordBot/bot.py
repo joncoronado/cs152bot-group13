@@ -11,6 +11,7 @@ import requests
 from report import Report
 import pdb
 from automation import classify_message
+from google_trans_new import google_translator  
 
 # Set up logging to the console
 logger = logging.getLogger('discord')
@@ -21,6 +22,8 @@ logger.addHandler(handler)
 
 MOD_CHANNEL_ID = 1356427907035041953
 context_path = 'context.json'
+
+translator = google_translator()
 
 # There should be a file called 'tokens.json' inside the same folder as this file
 token_path = 'tokens.json'
@@ -194,6 +197,10 @@ class ModBot(discord.Client):
             return
         
         context = await self.get_context()
+
+        if translator.detect(message.content).lang != 'en':
+            message.content = translator.translate(message.content, lang_tgt='en')
+            
         await self.add_message_to_context(message, context)
         
         classification = classify_message(message.content, context)

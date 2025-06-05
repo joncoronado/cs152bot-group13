@@ -21,8 +21,8 @@ with open(developer_message_path) as dev_f:
     developer_message = dev_f.read()
 
 def classify_message(message, context):
-    if len(context) > 50:
-        context = context[-50:]
+    if len(context) > 15:
+        context = context[-15:]
 
     response = client.beta.chat.completions.parse(
         model="gpt-4o",
