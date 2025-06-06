@@ -173,7 +173,7 @@ class Report:
                 case _:
                     reply = "I'm sorry, I couldn't understand that. "
                     return [reply + self.get_harassment_type()]
-            reply = f"You have selected {str(self.type)}. "
+            reply = f"You have selected {str(self.type.to_string())}. "
         #############################################################################
         #############################################################################
         #############################################################################
