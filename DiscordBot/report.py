@@ -141,7 +141,7 @@ class Report:
                 case _:
                     reply = "I'm sorry, I couldn't understand that. "
                     return [reply + self.get_report_type()]
-            reply = f"You have selected {str(self.type)}. "
+            reply = f"You have selected {self.type.to_string()}. "
             # Get type of harassment
             if self.type == ReportType.HARASSMENT:
                 reply += self.get_harassment_type()
@@ -182,7 +182,7 @@ class Report:
         # threats
         if self.state == State.REPORT_HARASSMENT and self.type == HarassmentReport.THREAT:
             self.state = State.HARASSMENT_THREAT
-            reply = "Who was the threat directed at? Please select from the following options:\n\n"
+            reply += "Who was the threat directed at? Please select from the following options:\n\n"
             reply += "1) Myself\n"
             reply += "2) Loved ones\n"
             reply += "3) Other\n\n"
@@ -191,21 +191,21 @@ class Report:
         # hate speech
         if self.state == State.REPORT_HARASSMENT and self.type == HarassmentReport.HATE_SPEECH:
             self.state = State.HARASSMENT_HATE_SPEECH
-            reply = "How would you like to classify this hate speech? "
-            reply = self.get_hate_speech_type()
+            reply += "How would you like to classify this hate speech? "
+            reply += self.get_hate_speech_type()
             return [reply]
         
         # SA
         if self.state == State.REPORT_HARASSMENT and self.type == HarassmentReport.SEXUAL_HARASSMENT:
             self.state = State.GET_BLOCK
-            reply = "We are sorry to hear that you are experiencing this. Your message has been flagged for review. "
+            reply += "We are sorry to hear that you are experiencing this. Your message has been flagged for review. "
             reply += self.get_block_answer()
             return [reply]
 
         # bullying, other
         if self.state == State.REPORT_HARASSMENT and (self.type == HarassmentReport.BULLYING or self.type == HarassmentReport.OTHER):
             self.state = State.GET_DETAIL
-            reply = "Thank you for your report. "
+            reply += "Thank you for your report. "
             reply += "If you would like, please reply with any additional details you would like to provide. "
             reply += "You can also say `done` to finish the report."
             return [reply]
@@ -372,11 +372,11 @@ class Report:
         if self.opened:
             report += f"**Report Opened:** {self.opened.strftime('%Y-%m-%d %H:%M:%S')}\n"
         if self.type:
-            report += f"**Harassment Type:** {str(self.type)}\n"
+            report += f"**Harassment Type:** {self.type.to_string()}\n"
         if self.detail.strip():
             report += f"**Additional Details:** {self.detail.strip()}\n"
         if self.tags:
-            report += "**Tags:** " + ", ".join(str(tag) for tag in self.tags) + "\n"
+            report += "**Tags:** " + ", ".join(tag.value for tag in self.tags) + "\n"
         else:
             report += "Additional Details: None\n"
         report += "======================"
