@@ -1,0 +1,201 @@
+index,oh_label,prediction,tags,reasoning
+0,1,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.BULLYING: 'Bullying'>]","This message is offensive and degrading, often used as an insult implying a lack of morality and respect."
+1,0,False,,The message simply expresses confusion regarding a point being discussed and uses a metaphor to convey that the points being compared are not similar. This is not harassment.
+2,0,False,,"The message expresses skepticism about decision-making and its consequences, but doesn't target or threaten any specific individual."
+3,0,False,,The message expresses an opinion favoring equality in marriage rights and criticizes religious judgment without using harassing or hateful language.
+4,0,False,,"The message contains a historical reflection and philosophical consideration on peace and conflict, expressed in Vietnamese. It does not exhibit any form of harassment."
+5,0,False,,"This message suggests a cautious approach to signing a player, with no indication of harassment or inappropriate content."
+6,0,False,,The message is a neutral question and does not contain any elements of harassment.
+7,1,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.THREAT: 'Threat'>, <Tags.HATE_SPEECH: 'Hate Speech'>, <Tags.HOMOPHOBIA: 'Homophobia'>, <Tags.VIOLENT: 'Violent Threat'>]","The message contains a violent threat directed at a group of people, identified with a homophobic slur, expressing a desire to harm them severely."
+8,1,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.BULLYING: 'Bullying'>]","The message is intended to insult someone by calling them fake and stupid, which is a form of bullying."
+9,1,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.BULLYING: 'Bullying'>]",The message is intended to insult and demean someone by calling them an idiot and implying ignorance in specific areas.
+10,0,False,,"The message expresses doubt about an injury but does not convey harm or harassment towards the mentioned individual, nor does it make any negative assumptions."
+11,0,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.THREAT: 'Threat'>, <Tags.NONVIOLENT: 'Nonviolent Threat'>]","The message implies a threat towards Jimbo.OG by suggesting the use of a fork towards them, which can be interpreted as a nonviolent but still malicious intent."
+12,0,False,,"The message appears to be a comment on people's attentiveness, without any indication of harassment."
+13,0,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.SEXISM: 'Sexism'>]","The message makes derogatory and sexist remarks towards women, implying an insult based on appearance and sexual activity."
+14,0,False,,The message appears to be a discussion or correction of a mathematical calculation related to income and spending percentages. There is no indication of harassment or inappropriate content.
+15,1,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.HATE_SPEECH: 'Hate Speech'>, <Tags.RACISM: 'Racism'>]","The message includes a derogatory term for cognitive disabilities and a racial slur, constituting hate speech and racism."
+16,1,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.BULLYING: 'Bullying'>]","The user's message contains degrading language and name-calling, referring to someone as a 'PieceOfShit' which is a form of bullying."
+17,0,False,,The comment appears to be part of a sports discussion or banter referencing a historical event. It does not contain personal attacks or harmful language.
+18,1,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.BULLYING: 'Bullying'>]","The message uses an insulting term to attack another user personally, which is considered bullying."
+19,1,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.BULLYING: 'Bullying'>]","The message uses an ableist slur and a hostile command, which constitutes bullying and harassment."
+20,0,False,,The message appears to be a play on words or a joke about the name 'Mike MacWHOgal' and does not indicate any form of harassment.
+21,0,False,,"This is a URL link likely pointing to a video on YouTube. Without additional context or information about the video's content, it cannot be classified as harassment."
+22,0,False,,This message appears to be a general statement and does not target any individual or group with harmful intent.
+23,0,False,,"The message does not carry any threatening or derogatory connotations and stands as a neutral comment, likely metaphorical without context."
+24,0,False,,"The message is expressing an opinion and challenging a viewpoint, but it does not contain harassment."
+25,0,False,,The message describes personal feelings and a story related to a TV show. It does not contain any elements of harassment.
+26,0,False,,The message discusses a past event regarding fans belittling the Community Shield but does not contain direct harassment or threatening content.
+27,0,False,,The message does not display any signs of harassment or inappropriate behavior. It is a simple inquiry likely related to a discussion about extracting a key.
+28,0,False,,The message is a comment on the value of internet points and does not contain any harassment or inappropriate content.
+29,0,False,,The message expresses an opinion about a coach and provides a positive assessment of their past performance. It does not contain any form of harassment or harmful content.
+30,0,False,,This message does not contain harassment but is an expression of a political opinion potentially laced with sarcasm or satire.
+31,0,False,,"The statement is a metaphorical expression of frustration or skepticism about the article's impact, without targeting a specific individual or group."
+32,0,True,"[<Tags.INAPPROPRIATE_CONTENT: 'Inappropriate Content'>, <Tags.HATE_SPEECH: 'Hate Speech'>]","The message contains derogatory remarks about a person featured in commercials and perpetuates a narrative against a specific organization and individuals, which can be classified as hate speech. Furthermore, the language objectifying a person in the commercial is inappropriate."
+33,0,False,,"The message by @sdnoriko is expressing skepticism about Capcom's future actions and hopes for a positive outcome in a dismissive, yet non-harassing manner."
+34,1,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.BULLYING: 'Bullying'>]","The message contains a personal insult directed towards Allinit123, aiming to demean and belittle them."
+35,0,False,,The message appears to be a comment on a movie and does not target or threaten any individual.
+36,0,False,,"The message is expressing a political opinion and critique, not harassment."
+37,1,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.BULLYING: 'Bullying'>]","This message insults and demeans others by calling them 'stupid', 'fools', and 'useful idiots', which constitutes bullying."
+38,1,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.BULLYING: 'Bullying'>]","The message contains abusive language directed towards another individual, which is a form of bullying."
+39,0,False,,The message is expressing a strong opinion but does not target an individual for harassment.
+40,0,False,,"This message is a direct statement accusing someone of lying, but lacks any further context or repeated behavior to qualify as damaging or harassing in nature."
+41,1,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.PERSONAL_THREAT: 'Personal Threat'>, <Tags.BULLYING: 'Bullying'>]","The message is personally attacking someone by calling them a 'typical socialist idiot' and suggesting their efforts are pointless, which is bullying."
+42,0,False,,The message '@beanstalk @briview Welp then NBW right?' does not contain any content that can be classified as harassment. It's a neutral statement without negative implications.
+43,0,False,,The message is congratulatory and invites further interaction on Google+. There is no indication of harassment or any inappropriate content.
+44,0,False,,The message critiques a behavior and mentions a punishment but is discussing a legal issue. It doesn't target an individual for harassment.
+45,1,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.HATE_SPEECH: 'Hate Speech'>, <Tags.HOMOPHOBIA: 'Homophobia'>]",The use of the word 'faggot' is recognized as homophobic hate speech.
+46,0,False,,The message expresses a personal belief about relaxation and identity in relation to work performance. It contains no language that could be considered harassing or threatening.
+47,1,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.BULLYING: 'Bullying'>]","The message targets 'Aimless Abe' with derogatory language, calling him a 'delusion weirdo', 'moronic', and suggests he should be detained, which is considered bullying behavior."
+48,0,False,,The message is a discussion about Android and iOS development and does not contain any harassment or inappropriate content.
+49,0,False,,The message is discussing basketball strategy and player positioning without any form of harassment or inappropriate content.
+50,0,False,,"The message appears to express an opinion on television shows and the free market, without any indication of harassment."
+51,1,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.BULLYING: 'Bullying'>]","The message is intended to demean and insult the recipient, constituting bullying."
+52,0,False,,"The message expresses gratitude and compliments Sabrina, showing no signs of harassment."
+53,0,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.HATE_SPEECH: 'Hate Speech'>, <Tags.VIOLENT: 'Violent Threat'>]",The message promotes violence and suggests that individuals should be given the means to harm themselves. This can be seen as a form of hate speech advocating for harmful actions.
+54,0,False,,The message expresses a personal need for a cigarette and does not indicate any form of harassment.
+55,1,False,,"The message is rude but does not meet the criteria for harassment, as it does not specifically threaten or target an individual with intent to harm."
+56,0,False,,The message is neutral and does not contain any elements of harassment.
+57,0,False,,The message appears supportive and expresses well wishes towards Paul's recovery.
+58,0,False,,The message appears to be a humorous or anecdotal statement with no indications of harassment or harmful intent.
+59,1,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.HATE_SPEECH: 'Hate Speech'>, <Tags.RELIGIOUS_DISCRIMINATION: 'Religious Discrimination'>]","The message labels another user as anti-Semitic and uses derogatory language, calling them a 'racist moron' and includes 'FU', indicating hate speech and religious discrimination."
+60,0,False,,"The message inquires about a person named FredEx, with no indication of harassment."
+61,1,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.BULLYING: 'Bullying'>]","The message includes derogatory language intended to belittle and demean the receiver, qualifying as bullying."
+62,0,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.BULLYING: 'Bullying'>]","The message appears to be antagonistic and dismissive, employing name-calling and implicitly berating the questioned person's actions or judgment. It expresses hostility and demands without reasoned argument, which can be considered bullying behavior."
+63,0,False,,The message doesn't target any individual or group and does not contain threatening or harassing language.
+64,0,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.THREAT: 'Threat'>]","The message includes a veiled physical threat by demanding an address multiple times, implying an intention to confront or intimidate the recipient."
+65,0,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.BULLYING: 'Bullying'>]","The message contains derogatory and belittling language towards Lewis, calling them a 'petulant idiot' and suggesting they are immature. This is considered bullying behavior."
+66,0,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.BULLYING: 'Bullying'>]","The message uses derogatory and insulting language directed towards an individual, suggesting bullying behavior."
+67,0,False,,"The message is a comment on the business strategy and market performance of phone companies, specifically related to iOS. It does not contain any elements of harassment."
+68,0,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.ETHNIC_CULTURAL_DISCRIMINATION: 'Ethnic/Cultural Discrimination'>]","The message contains derogatory remarks about Argentineans being ill-educated, cowardly, and engaged in historical revisionism. The language used is dismissive and generalizes about the entire population based on stereotypes."
+69,0,False,,The statement is a comment on the Marlins' history of trading players and does not contain any elements of harassment or threat.
+70,0,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.RACISM: 'Racism'>, <Tags.SEXISM: 'Sexism'>]","The message contains racially stereotyped comments about Chinese people and objectifies Asian women, which is both racist and sexist."
+71,0,False,,This message is referring to an off-topic conversation without any indication of harassment or harmful language.
+72,0,False,,The message is a general statement that does not contain any elements of harassment.
+73,0,False,,"This message appears to be a political statement or question about future plans, not targeted harassment."
+74,0,False,,This message is a personal statement about not watching a specific news channel and does not contain any language that could be considered harassment.
+75,0,False,,The message is a simple question about someone's whereabouts and does not contain any harmful content.
+76,0,False,,"The message expresses a dislike for heat, which is not harassment."
+77,0,False,,The message is a humorous and self-reflective comment about the speaker's perception of Alexis Bledel's acting abilities. It does not contain any harassment or harmful content.
+78,0,False,,The message discusses personal opinions about self-defense but does not contain any explicit threats or harassment.
+79,1,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.ETHNIC_CULTURAL_DISCRIMINATION: 'Ethnic/Cultural Discrimination'>]","The message uses stereotypes to demean and criticize white people and references offensive stereotypes associated with racial or social groups, demeaning them based on ethnicity and cultural background."
+80,1,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.BULLYING: 'Bullying'>]","The term ""bottom feeder"" is often used derogatorily to insult someone's social or moral standing, implying they are of low worth or status."
+81,0,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.HATE_SPEECH: 'Hate Speech'>, <Tags.VIOLENT: 'Violent Threat'>]","The message contains violent language ('Mátenlos' translates to 'Kill them') and shares an image link that appears to depict violence, which constitutes a violent threat."
+82,1,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.BULLYING: 'Bullying'>]","The message includes insulting language and derogatory terms intended to demean and belittle the recipient, indicating harassment and bullying."
+83,0,False,,This message is expressing an opinion about a president's actions without any indication of harassment or harmful content.
+84,0,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.BULLYING: 'Bullying'>]","The message is intended to insult and demean the recipient by calling them a 'tool' and suggesting they 'go back to picking through trash,' which is a demeaning and offensive comparison."
+85,0,False,,The message appears to be a commentary on handling an investigation tactfully and criticizes anonymous commenters for being disrespectful. It's firm but not harassing or hateful.
+86,0,False,,The message refers to a play in a sporting event and doesn't contain abusive or derogatory language.
+87,0,False,,"This message contains some heated language but primarily focuses on debating preferences between different computing platforms. Although there are insults present, the overall message is centered on expressing personal opinions and preferences about technology."
+88,1,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.BULLYING: 'Bullying'>]","The message is using derogatory language and insults to belittle and humiliate the recipient, which constitutes bullying."
+89,0,False,,The message suggests engaging in mutual playful banter and does not contain any harmful or threatening elements.
+90,0,False,,"The message is a neutral statement or question about someone's location, presumably based on their geographic location."
+91,0,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.HOMOPHOBIA: 'Homophobia'>]","The message suggests segregating gay and lesbian individuals, which is a discriminatory and homophobic statement."
+92,0,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.RACISM: 'Racism'>, <Tags.HATE_SPEECH: 'Hate Speech'>]","The message makes a blanket statement about Canyon students being racist, which involves racial stereotyping. It also uses a derogatory term against an individual (gabby), which contributes to hate speech."
+93,1,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.RACISM: 'Racism'>]","The message uses racially derogatory language ('papers') and a derogatory term ('sticky-chin') to disparage aralconservati, implying racism and harassment."
+94,0,True,[<Tags.RELIGIOUS_DISCRIMINATION: 'Religious Discrimination'>],"The message accuses a group of oppressing others under the guise of religious beliefs, which constitutes religious discrimination."
+95,1,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.BULLYING: 'Bullying'>]","The message uses derogatory language and mocks another person's abilities, implying that they lack talent and inviting ridicule."
+96,1,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.BULLYING: 'Bullying'>]","The message is derogatory and intended to insult the recipient by implying they are an unwanted consequence of their parents' actions. It also dismisses the recipient's worth, constituting bullying."
+97,1,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.SEXUAL_HARASSMENT: 'Sexual Harassment'>]",The message contains sexually suggestive language intended to demean or objectify.
+98,0,False,,"The message appears to be a political commentary or criticism of a public figure and media, without targeted harassment, threats, or discriminatory language."
+99,0,False,,"This message does not contain any content that constitutes harassment. It is a general expression with use of strong language, but not directed in a harassing manner."
+100,1,True,[<Tags.HARASSMENT: 'Harassment'>],"The message 'fuck you both' is aggressive and abusive language towards others, constituting harassment."
+101,0,False,,This message is expressing an opinion on media bias and does not contain any elements of harassment.
+102,0,False,,The message asks for clarification about a previous statement. It does not contain abusive or threatening language.
+103,1,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.HATE_SPEECH: 'Hate Speech'>]","The message uses an offensive slur in a derogatory manner towards individuals with mental disabilities, constituting hate speech."
+104,0,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.BULLYING: 'Bullying'>]","The message calls the person an 'idiot' and 'waste of human space,' which is demeaning and constitutes bullying."
+105,0,False,,The message is a neutral opinion about Rondo's ability in a non-derogatory manner and does not contain any elements of harassment.
+106,1,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.BULLYING: 'Bullying'>]","The message mocks the recipient's mental health by implying they need medication and uses derogatory language, which constitutes bullying."
+107,0,False,,The message expresses a personal opinion about taxation policies without any elements of harassment.
+108,1,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.BULLYING: 'Bullying'>, <Tags.SEXISM: 'Sexism'>]",The message is harassing Mr. King by implying a lack of courage ('grow a pair of balls') and is using sexist language to insult him by calling him a 'pussy cat.' It also uses political association as a derogatory comment.
+109,0,False,,The message expresses amusement and an opinion about WeBlog's handling of issues. It does not target or harass any individual or group.
+110,0,False,,The message seems to be a play on words referencing Gabriel's Horn from religious or cultural contexts. There is no indication of harassment.
+111,0,False,,This message is discussing a common frustration with clothes not fitting without targeting or bullying any individual.
+112,0,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.SEXISM: 'Sexism'>]","This message uses derogatory terms to demean women, which is sexist and offensive."
+113,0,True,[<Tags.HATE_SPEECH: 'Hate Speech'>],"The message disparages political correctness and indirectly insults groups promoting it by calling them 'delusional' and 'illogical'. Additionally, it employs derogatory language suggestive of vulgarity."
+114,1,False,,The message uses playful wordplay but does not target an individual in a way that can be classified as harassment.
+115,1,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.THREAT: 'Threat'>]","The message contains aggressive language, insults, and describes violent actions that suggest intent to harm."
+116,0,False,,The message describes Blown's reaction to a job rejection with a political commentary but does not contain harassment.
+117,0,False,,The message appears to be related to gaming strategies rather than any form of harassment.
+118,0,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.SEXISM: 'Sexism'>]","The message contains sexist language and threats towards women, portraying them as instigators and suggesting they deserve violence for their actions, displaying a clear bias against women."
+119,0,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.BULLYING: 'Bullying'>]","jonathaannc's message contains insulting language directed at Robert Moroni, employing derogatory terms such as 'dimwit.' This is a form of bullying."
+120,1,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.RELIGIOUS_DISCRIMINATION: 'Religious Discrimination'>, <Tags.HATE_SPEECH: 'Hate Speech'>]","The message contains hate speech and derogatory remarks targeting Christians, reflecting religious discrimination."
+121,0,False,,"This message appears to be a friendly and humorous response to someone pointing out a mistake, with no indication of harassment or negative behavior."
+122,0,False,,The message does not contain any language or content that constitutes harassment or a threat. It seems to be a statement about environmental behavior.
+123,0,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.HATE_SPEECH: 'Hate Speech'>, <Tags.ETHNIC_CULTURAL_DISCRIMINATION: 'Ethnic/Cultural Discrimination'>]","This message contains derogatory language and negative stereotypes about immigrants, implying they are inferior and responsible for societal issues, which constitutes hate speech and ethnic/cultural discrimination."
+124,0,False,,"The message seems to reference a personal issue or an IT problem, but there is no direct indication of harassment."
+125,0,False,,The message is a general discussion about basketball strategy and does not have any language or context related to harassment.
+126,0,False,,"The quote, while potentially inappropriate or taken out of context, does not constitute harassment based on the provided information."
+127,1,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.BULLYING: 'Bullying'>]","The message is a direct insult meant to demean the recipient, which qualifies it as bullying."
+128,1,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.BULLYING: 'Bullying'>]","The message mocks the recipient by calling them a 'loser' and suggests that past interactions have upset them, intending to belittle and harass them."
+129,0,False,,The message appears to be expressing a strong opinion about a legal case and does not contain any elements of harassment or abusive language towards an individual.
+130,0,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.INAPPROPRIATE_CONTENT: 'Inappropriate Content'>]",The message contains explicit sexual content which is inappropriate.
+131,0,False,,This message is simply asking Axlrodes about an event or topic and does not contain any harassment.
+132,0,False,,"The message appears to be an expression of frustration or anger, but it does not target a specific person or group and lacks context for harassment."
+133,1,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.BULLYING: 'Bullying'>]","The message includes personal attacks and belittling language aimed at the recipient, calling them a 'moron' and 'the lowest of the low'."
+134,1,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.INAPPROPRIATE_CONTENT: 'Inappropriate Content'>]","The message discusses wanting food allergies as a means to self-harm, which is inappropriate and harmful content."
+135,0,False,,"The message is asking a sports-related question about which team is a tougher opponent, with no indications of harassment."
+136,1,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.BULLYING: 'Bullying'>]","The language used is aggressive and insulting, aimed at belittling the recipient."
+137,0,False,,The message is critical but does not contain any elements of harassment towards any individual or group.
+138,0,False,,"The message is a political opinion that criticizes a political party and its members. It does not contain personal attacks or threaten individuals and, therefore, does not qualify as harassment."
+139,0,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.BULLYING: 'Bullying'>]","The message implies that Mr. Murray, a tennis player, has a negative attitude and refers to him as 'misery guts', which is a demeaning term."
+140,0,False,,"The message 'You are repeating yourself, mate.' does not contain harmful content or harassment. It's a casual remark about repetition."
+141,1,False,,"""Sick puppy,"" here, is likely used as an idiomatic expression denoting surprise or amazement and doesn't inherently seem to contain harassment."
+142,0,False,,This message is a personal reflection on study habits and does not contain any harassment or inappropriate content.
+143,0,False,,"The message does not contain any explicit harassment, threats, or discrimination. It appears to be expressing support for someone's actions, albeit in informal language."
+144,1,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.BULLYING: 'Bullying'>]","The second part of the message is directed at an individual, calling them a 'dick,' which is considered bullying."
+145,0,False,,"The message appears to be part of a casual conversation, with no indication of harassment or derogatory content."
+146,0,False,,"The message appears to be a neutral or positive statement about plastic surgery, without any indication of harassment."
+147,0,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.BULLYING: 'Bullying'>]","The message uses derogatory language ('wacko', 'sheep') to belittle and mock people who support Ron Paul and Cynthia McKinney, which is considered bullying."
+148,0,False,,"The message appears to be a suggestion or comment on moving to Hollywood and joining public figures, which is not inherently harassing or threatening."
+149,1,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.VIOLENT: 'Violent Threat'>, <Tags.HATE_SPEECH: 'Hate Speech'>]","The user's message contains hate speech and a violent threat towards an individual, using derogatory and offensive language."
+150,0,False,,The message discusses a political event in Argentina without targeting individuals with harassment or threats.
+151,0,False,,The statement does not contain any language that can be considered harassment or threatening; it appears to be an opinion or statement on financial obligation.
+152,0,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.BULLYING: 'Bullying'>, <Tags.HOMOPHOBIA: 'Homophobia'>]","The message references and trivializes an act of homophobic bullying from Mitt Romney's past, involving physical assault on a gay individual."
+153,0,False,,The message expresses competitive sports banter and does not contain targeted harassment or threats.
+154,0,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.HATE_SPEECH: 'Hate Speech'>, <Tags.VIOLENT: 'Violent Threat'>]","The message expresses a violent sentiment, suggesting that someone should have been hanged, which qualifies as a violent threat and hate speech."
+155,0,False,,"The user expresses a willingness to have an open and honest discussion, even in disagreement. There are no indications of harassment."
+156,0,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.BULLYING: 'Bullying'>]",The message implies continuous harassment ('pecking him to death') and derogatory comments ('ugly runs') towards an individual.
+157,0,False,,The message is a personal opinion and does not contain any harassment or threatening content.
+158,0,False,,"The message is a comment on the user's inability to use certain features, likely due to their device, and does not contain any harassment."
+159,0,False,,"The message is expressing nostalgia and making a harmless comparison about appearances, which does not constitute harassment."
+160,1,False,,"The message contains playful taunting related to sports with mild language, but it does not constitute harassment."
+161,0,False,,The message expresses an opinion about political entities but does not include any harassment or threatening language.
+162,1,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.HATE_SPEECH: 'Hate Speech'>, <Tags.RACISM: 'Racism'>]","The message includes racial slurs and derogatory language, which is considered hate speech and harassment."
+163,0,False,,"The message involves a question that may pertain to personal preferences or behavior, but it does not explicitly contain or imply harassment."
+164,0,False,,The message expresses appreciation and enthusiasm without any harmful or harassing content.
+165,0,False,,This question is neutral and does not contain any harassment or inappropriate language.
+166,1,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.HATE_SPEECH: 'Hate Speech'>, <Tags.HOMOPHOBIA: 'Homophobia'>]","The message expresses disdain for a person based on their sexual orientation, specifically using 'Gay' as an insult."
+167,1,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.INAPPROPRIATE_CONTENT: 'Inappropriate Content'>]","The message makes a false and defamatory accusation of a very serious crime, using offensive language, which constitutes harassment."
+168,0,False,,"The message is a positive statement about someone, referring to them as a genius, which is not harassment."
+169,1,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.HATE_SPEECH: 'Hate Speech'>]","This message is derogatory and offensive, specifically targeting someone's identity, which constitutes hate speech."
+170,1,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.BULLYING: 'Bullying'>]","The message is insulting by implying that the recipient is 'dense,' which is a derogatory way of saying they are not intelligent."
+171,0,False,,The message discusses financial services and government listening but does not contain any harassment-related content. It appears to criticize the high-interest rates of a lending company.
+172,0,False,,The message expresses a negative opinion about Serena's personality but does not contain any harassment or abusive language.
+173,0,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.HATE_SPEECH: 'Hate Speech'>, <Tags.PERSONAL_THREAT: 'Personal Threat'>, <Tags.RACISM: 'Racism'>]","The message includes derogatory language directed at a specific political figure, using a racially-charged term ""Dumbama"" and insults aimed at their spouse, which constitutes hate speech and a personal attack. It expresses resentment towards government policies with aggressive language."
+174,0,False,,The message is a factual report on a Gallup poll and contains no elements of harassment.
+175,0,False,,The message criticizes Tate's professional behavior but does not contain any harassment.
+176,0,False,,"Standing on a porch could be related to safety advice or caution, but the message alone is not inherently harmful or harassing."
+177,0,False,,"This message appears to be a generic or colloquial expression, possibly referencing a situation that requires intervention. There is no indication of targeted harassment or harmful intent."
+178,0,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.HATE_SPEECH: 'Hate Speech'>]","The message contains derogatory language towards political opponents, using terms like ""occupukes"" and ""occupunks."" It also includes unfounded, harmful allegations against a group, claiming they engage in criminal behavior without evidence, which can be considered hate speech."
+179,0,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.HATE_SPEECH: 'Hate Speech'>, <Tags.INAPPROPRIATE_CONTENT: 'Inappropriate Content'>]","The message promotes harmful conspiracy theories, specifically accusing government members of being pedophiles, which can incite fear and distrust among the public."
+180,0,True,"[<Tags.SEXISM: 'Sexism'>, <Tags.HOMOPHOBIA: 'Homophobia'>]","The message implies negative stereotypical behavior based on being gay, which can be homophobic. It also uses 'spoiled bitch' negatively reflecting on Colton, which can be perceived as sexist."
+181,0,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.INAPPROPRIATE_CONTENT: 'Inappropriate Content'>]",The message uses 'inbreeds' in a derogatory manner to insult a group of people.
+182,0,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.HATE_SPEECH: 'Hate Speech'>, <Tags.ETHNIC_CULTURAL_DISCRIMINATION: 'Ethnic/Cultural Discrimination'>]",The message includes hate speech and ethnic/cultural discrimination by referring to an individual as 'diseased minded scum' based on nationality and advocating for breaking laws to deport them.
+183,0,False,,"This message is a discussion about football coaches and their effectiveness, which is not harassment."
+184,0,False,,This message does not contain any language or context that could be considered harassment.
+185,0,False,,This message is a political question and does not contain any elements of harassment.
+186,0,False,,"The message contains boastful language regarding the potential for flaming, but does not contain direct harassment or threats towards Joe."
+187,0,False,,The message is inquiring about clarification and does not contain any harassment content.
+188,0,False,,"The message is expressing excitement and celebration over a sports victory, with no indication of harassment."
+189,0,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.BULLYING: 'Bullying'>, <Tags.INAPPROPRIATE_CONTENT: 'Inappropriate Content'>]","The message uses demeaning language to describe people, referring to them as 'idiots' and 'retards,' which is inappropriate and considered bullying."
+190,0,False,,The message is a positive statement indicating appreciation for someone's comments.
+191,0,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.HATE_SPEECH: 'Hate Speech'>, <Tags.HOMOPHOBIA: 'Homophobia'>]",The message includes a derogatory and homophobic term ('fag-box') and dismisses the recipient's comments in a hostile manner.
+192,1,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.BULLYING: 'Bullying'>]","The message uses derogatory language, implying that the recipient is a 'parasite,' which is a form of bullying and verbal harassment."
+193,0,False,,This message appears to be related to sports rivalry and banter. There is no direct harassment or threatening content.
+194,0,False,,The message is expressing an opinion about the importance of comedy in life and does not contain any content that constitutes harassment.
+195,1,True,"[<Tags.HARASSMENT: 'Harassment'>, <Tags.RACISM: 'Racism'>, <Tags.HOMOPHOBIA: 'Homophobia'>, <Tags.SEXISM: 'Sexism'>]","The message uses derogatory language and dismisses various minority groups, including racial, gender, and sexual orientation minorities, which constitutes racism, homophobia, and sexism."
+196,0,False,,"The message appears to be a political commentary and does not contain any signs of harassment, threats, or hate speech."
+197,0,False,,"The message does not contain any direct or implied harassment, threats, or inappropriate language. It appears to be a general comment, likely referring to something unrelated to harassment."
+198,0,False,,The message expresses a personal opinion and does not contain harassment or abusive language.
+199,0,False,,"This message expresses a political opinion and critique, but does not contain elements of harassment."
